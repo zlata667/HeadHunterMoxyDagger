@@ -17,6 +17,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.arellomobile.mvp.presenter.InjectPresenter;
 import com.arellomobile.mvp.presenter.ProvidePresenter;
+import com.example.headhunter.AppDelegate;
 import com.example.headhunter.R;
 import com.example.headhunter.common.PresenterFragment;
 import com.example.headhunter.common.RefreshOwner;
@@ -24,11 +25,14 @@ import com.example.headhunter.common.Refreshable;
 
 import com.example.headhunter.data.model.Vacancies;
 import com.example.headhunter.ui.startApp.StartSearchActivity;
+import com.example.headhunter.ui.startApp.StartSearchPresenter;
 import com.example.headhunter.ui.vacancy.VacancyActivity;
 import com.example.headhunter.ui.vacancy.VacancyFragment;
 import com.example.headhunter.utils.ApiUtils;
 
 import java.util.List;
+
+import javax.inject.Inject;
 
 import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.disposables.Disposable;
@@ -47,12 +51,13 @@ public class VacanciesFragment extends PresenterFragment
     private String searchText;
     private String searchRegion;
 
+    @Inject
     @InjectPresenter
     VacanciesPresenter presenter;
 
     @ProvidePresenter
     VacanciesPresenter providePresenter(){
-        return new VacanciesPresenter(this);
+        return presenter;
     }
 
     @Override
@@ -64,6 +69,12 @@ public class VacanciesFragment extends PresenterFragment
         VacanciesFragment fragment = new VacanciesFragment();
         fragment.setArguments(args);
         return fragment;
+    }
+
+    @Override
+    public void onCreate(Bundle savedInstanceState){
+        AppDelegate.getAppComponent().inject(this);
+        super.onCreate(savedInstanceState);
     }
 
     @Override
@@ -154,7 +165,6 @@ public class VacanciesFragment extends PresenterFragment
             recyclerView.setVisibility(View.GONE);
             errorView.setVisibility(View.VISIBLE);
         }
-
     }
 
     @Override

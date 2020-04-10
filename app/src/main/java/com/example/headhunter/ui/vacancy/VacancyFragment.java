@@ -16,12 +16,16 @@ import androidx.fragment.app.Fragment;
 
 import com.arellomobile.mvp.presenter.InjectPresenter;
 import com.arellomobile.mvp.presenter.ProvidePresenter;
+import com.example.headhunter.AppDelegate;
 import com.example.headhunter.R;
 import com.example.headhunter.common.PresenterFragment;
 import com.example.headhunter.common.RefreshOwner;
 import com.example.headhunter.common.Refreshable;
 import com.example.headhunter.data.model.Vacancy;
+import com.example.headhunter.ui.startApp.StartSearchPresenter;
 import com.example.headhunter.utils.ApiUtils;
+
+import javax.inject.Inject;
 
 import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.disposables.Disposable;
@@ -42,12 +46,13 @@ public class VacancyFragment extends PresenterFragment
     private TextView vacancyDescription;
     private String vacancyId;
 
+    @Inject
     @InjectPresenter
     VacancyPresenter presenter;
 
     @ProvidePresenter
     VacancyPresenter providePresenter(){
-        return new VacancyPresenter(this);
+        return presenter;
     }
 
     @Override
@@ -59,6 +64,12 @@ public class VacancyFragment extends PresenterFragment
         VacancyFragment fragment = new VacancyFragment();
         fragment.setArguments(args);
         return fragment;
+    }
+
+    @Override
+    public void onCreate(Bundle savedInstanceState){
+        AppDelegate.getAppComponent().inject(this);
+        super.onCreate(savedInstanceState);
     }
 
     @Override

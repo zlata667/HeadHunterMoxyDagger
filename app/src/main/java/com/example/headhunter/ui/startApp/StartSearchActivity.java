@@ -1,5 +1,6 @@
 package com.example.headhunter.ui.startApp;
 
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.widget.ArrayAdapter;
@@ -23,12 +24,13 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import javax.inject.Inject;
+
 import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.disposables.Disposable;
 import io.reactivex.schedulers.Schedulers;
 
 public class StartSearchActivity extends SingleFragmentActivity{
-
 
     @Override
     protected Fragment getFragment(){

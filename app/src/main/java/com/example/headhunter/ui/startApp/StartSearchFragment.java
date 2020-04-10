@@ -17,11 +17,13 @@ import androidx.fragment.app.Fragment;
 
 import com.arellomobile.mvp.presenter.InjectPresenter;
 import com.arellomobile.mvp.presenter.ProvidePresenter;
+import com.example.headhunter.AppDelegate;
 import com.example.headhunter.R;
 import com.example.headhunter.common.PresenterFragment;
 import com.example.headhunter.common.RefreshOwner;
 import com.example.headhunter.common.Refreshable;
 import com.example.headhunter.data.model.Country;
+import com.example.headhunter.di.AppComponent;
 import com.example.headhunter.ui.vacancies.VacanciesActivity;
 import com.example.headhunter.ui.vacancies.VacanciesFragment;
 import com.example.headhunter.utils.ApiUtils;
@@ -30,6 +32,8 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+
+import javax.inject.Inject;
 
 import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.disposables.Disposable;
@@ -44,12 +48,13 @@ public class StartSearchFragment extends PresenterFragment
     private AutoCompleteTextView autoCompleteTextView;
     private EditText editTextSearch;
 
+    @Inject
     @InjectPresenter
     StartSearchPresenter presenter;
 
     @ProvidePresenter
     StartSearchPresenter providePresenter(){
-        return new StartSearchPresenter(this);
+        return presenter;
     }
 
     @Override
@@ -59,6 +64,12 @@ public class StartSearchFragment extends PresenterFragment
 
     static Fragment newInstance(){
         return new StartSearchFragment();
+    }
+
+    @Override
+    public void onCreate(Bundle savedInstanceState){
+        AppDelegate.getAppComponent().inject(this);
+        super.onCreate(savedInstanceState);
     }
 
     @Override

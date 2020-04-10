@@ -1,22 +1,34 @@
 package com.example.headhunter.ui.startApp;
 
+import android.content.Context;
+
 import com.arellomobile.mvp.InjectViewState;
+import com.example.headhunter.AppDelegate;
 import com.example.headhunter.common.BasePresenter;
+import com.example.headhunter.data.api.HeadHunterApi;
 import com.example.headhunter.utils.ApiUtils;
+
+import javax.inject.Inject;
+
 import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.schedulers.Schedulers;
 
 @InjectViewState
 public class StartSearchPresenter extends BasePresenter<StartSearchView>{
 
-    private final StartSearchView mView;
+    @Inject
+    Context mContext;
+    @Inject
+    HeadHunterApi mApi;
 
-    public StartSearchPresenter(StartSearchView startSearchView){
-        mView = startSearchView;
+    @Inject
+    StartSearchPresenter(){
+        //AppDelegate.getAppComponent().inject(this);
     }
 
+
     public void loadRegions(){
-        compositeDisposable.add(ApiUtils.getApiService().getCities()
+        compositeDisposable.add(mApi.getCities()
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .doOnSubscribe(disposable1 -> {

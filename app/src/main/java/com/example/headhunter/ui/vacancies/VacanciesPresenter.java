@@ -1,8 +1,14 @@
 package com.example.headhunter.ui.vacancies;
 
+import android.content.Context;
+
 import com.arellomobile.mvp.InjectViewState;
+import com.example.headhunter.AppDelegate;
 import com.example.headhunter.common.BasePresenter;
+import com.example.headhunter.data.api.HeadHunterApi;
 import com.example.headhunter.utils.ApiUtils;
+
+import javax.inject.Inject;
 
 import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.schedulers.Schedulers;
@@ -10,15 +16,19 @@ import io.reactivex.schedulers.Schedulers;
 @InjectViewState
 public class VacanciesPresenter extends BasePresenter<VacanciesView>{
 
-    private final VacanciesView mView;
+    @Inject
+    Context mContext;
+    @Inject
+    HeadHunterApi mApi;
 
-    public VacanciesPresenter(VacanciesView vacanciesView){
-        mView = vacanciesView;
+    @Inject
+    VacanciesPresenter(){
+        //AppDelegate.getAppComponent().inject(this);
     }
 
     public void getVacancies(String searchText, String searchRegion){
 
-        compositeDisposable.add(ApiUtils.getApiService().getVacancies(searchText, searchRegion)
+        compositeDisposable.add(mApi.getVacancies(searchText, searchRegion)
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .doOnSubscribe(disposable1 -> getViewState().showRefresh())
