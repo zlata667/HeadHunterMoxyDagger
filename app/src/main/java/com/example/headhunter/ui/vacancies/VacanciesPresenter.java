@@ -23,11 +23,9 @@ public class VacanciesPresenter extends BasePresenter<VacanciesView>{
 
     @Inject
     VacanciesPresenter(){
-        //AppDelegate.getAppComponent().inject(this);
     }
 
     public void getVacancies(String searchText, String searchRegion){
-
         compositeDisposable.add(mApi.getVacancies(searchText, searchRegion)
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())

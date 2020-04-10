@@ -23,7 +23,6 @@ public class StartSearchPresenter extends BasePresenter<StartSearchView>{
 
     @Inject
     StartSearchPresenter(){
-        //AppDelegate.getAppComponent().inject(this);
     }
 
 

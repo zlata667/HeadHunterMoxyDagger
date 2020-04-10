@@ -12,5 +12,6 @@ public interface StartSearchView extends BaseView{
 
     void loadRegions(List<Country> countries);
 
+    @StateStrategyType(SkipStrategy.class)
     void openVacanciesFragment();
 }

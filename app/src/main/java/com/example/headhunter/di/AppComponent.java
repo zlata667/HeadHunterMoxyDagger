@@ -23,9 +23,4 @@ public interface AppComponent{
     void inject(StartSearchFragment injector);
     void inject(VacanciesFragment injector);
     void inject(VacancyFragment injector);
-
-    void inject(StartSearchPresenter injector);
-    void inject(VacanciesPresenter injector);
-    void inject(VacancyPresenter injector);
-
 }

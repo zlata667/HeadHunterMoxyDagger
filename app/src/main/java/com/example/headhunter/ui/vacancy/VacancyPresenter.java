@@ -24,7 +24,6 @@ public class VacancyPresenter extends BasePresenter<VacancyView>{
 
     @Inject
     VacancyPresenter(){
-        //AppDelegate.getAppComponent().inject(this);
     }
 
     public void getVacancy(String vacancyId){
