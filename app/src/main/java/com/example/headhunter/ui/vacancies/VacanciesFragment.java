@@ -6,7 +6,6 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -24,19 +23,12 @@ import com.example.headhunter.common.RefreshOwner;
 import com.example.headhunter.common.Refreshable;
 
 import com.example.headhunter.data.model.Vacancies;
-import com.example.headhunter.ui.startApp.StartSearchActivity;
-import com.example.headhunter.ui.startApp.StartSearchPresenter;
 import com.example.headhunter.ui.vacancy.VacancyActivity;
 import com.example.headhunter.ui.vacancy.VacancyFragment;
-import com.example.headhunter.utils.ApiUtils;
 
 import java.util.List;
 
 import javax.inject.Inject;
-
-import io.reactivex.android.schedulers.AndroidSchedulers;
-import io.reactivex.disposables.Disposable;
-import io.reactivex.schedulers.Schedulers;
 
 public class VacanciesFragment extends PresenterFragment
         implements VacanciesView, Refreshable, VacanciesAdapter.OnItemClickListener{

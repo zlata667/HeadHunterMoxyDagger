@@ -5,4 +5,6 @@
     <string name="find_vacancy">Найдите свою вакансию</string>
     <string name="choose_region">Выберите регион</string>
     <string name="find_button">Найти</string>
+    <string name="hh_icon">hh_icon</string>
+    <string name="search_word">Введите слово для поиска</string>
 </resources>

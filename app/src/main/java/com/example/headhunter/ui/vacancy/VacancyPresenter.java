@@ -1,13 +1,10 @@
 package com.example.headhunter.ui.vacancy;
 
 import android.content.Context;
-import android.view.View;
 
 import com.arellomobile.mvp.InjectViewState;
-import com.example.headhunter.AppDelegate;
 import com.example.headhunter.common.BasePresenter;
 import com.example.headhunter.data.api.HeadHunterApi;
-import com.example.headhunter.utils.ApiUtils;
 
 import javax.inject.Inject;
 

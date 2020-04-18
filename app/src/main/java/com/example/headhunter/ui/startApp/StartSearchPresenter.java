@@ -3,10 +3,8 @@ package com.example.headhunter.ui.startApp;
 import android.content.Context;
 
 import com.arellomobile.mvp.InjectViewState;
-import com.example.headhunter.AppDelegate;
 import com.example.headhunter.common.BasePresenter;
 import com.example.headhunter.data.api.HeadHunterApi;
-import com.example.headhunter.utils.ApiUtils;
 
 import javax.inject.Inject;
 
